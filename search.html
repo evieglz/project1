@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Search for Parking</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="assets/css/search.css"> 
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- bootstrap cs and js-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Cabin+Sketch" rel="stylesheet">
+
+
+    <style>
+       Always set the map height explicitly to define the size of the div
+        element that contains the map.
+      
+        /* #map {
+        height: 800px;
+        width: 60%;
+    
+      }
+      /* Optional: Makes the sample page fill the window. */
+      /* html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;  */
+      /* } */
+    </style>
+
+   
+  </head>
+
+<body>
+
+
+<div id="container">
+  
+     <img id = "austin" src="assets/images/skyline.jpg" alt="sign" style= "height:800px" "width:1000px;"> 
+      <div class = "search-page">
+      <p id= "caption"> DESTINATION </p>
+      <!-- Search form -->
+      <input id= "search-input" class="form-control" type="text" placeholder="Search" aria-label="Search">
+      <br>
+      <!-- Search form -->
+      <p id= "caption"> DISTANCE </p> 
+      <input class="form-control" type="text" placeholder="meters" aria-label="Search">
+      <!-- Search form -->
+      <br>
+      <p id= "caption"> PRICE </p>
+      <input class="form-control" type="text" placeholder="$$" aria-label="Search">
+
+      <br>
+      <button type="submit" class="btn btn-info">submit</button>
+    </div>
+  </div>  
+  
+
+
+  
+<!-- MAP -->
+
+<div class="iframe-container">
+<div id="map"></div>
+</div>
+    <script src="assets/javascript/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO9-3zC1SgUpkcnrERVzsS3h4xEySru3k&libraries=places&callback=initAutocomplete"
+       async defer></script>
+
+       <!-- <script src="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT,LONG&radius=500&types=parking&sensor=false&key=AIzaSyDO9-3zC1SgUpkcnrERVzsS3h4xEySru3k&callback=point_of_interest"
+       async defer></script> -->
+<center><p id="parkIt"> - - - - - - - - - - - - PARK IT - - - - - - - - - - - - </p></center>
+
+
+
+
+
+
+   
+</body>
+</html>
