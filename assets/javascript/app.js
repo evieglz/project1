@@ -20,6 +20,7 @@ firebase.initializeApp(config);
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 var rating = 2.5;
+var database =firebase.database ()
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
