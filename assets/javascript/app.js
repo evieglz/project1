@@ -1,6 +1,17 @@
-/* map */
+// / map */
  
 ///////////////
+// firebase info
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyD7SxusedMqWMEMSF6-nPQf_5JvcoMlD_k",
+  authDomain: "project1-ffdfe.firebaseapp.com",
+  databaseURL: "https://project1-ffdfe.firebaseio.com",
+  projectId: "project1-ffdfe",
+  storageBucket: "project1-ffdfe.appspot.com",
+  messagingSenderId: "177189113878"
+};
+firebase.initializeApp(config);
 
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
@@ -8,12 +19,15 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+var rating = 2.5;
+
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 30.267153, lng: -97.7430608},
     zoom: 15,
     mapTypeId: 'roadmap'
   });
+
   // Create the search box and link it to the UI element.
   var input = document.getElementById('search-input');
   var searchBox = new google.maps.places.SearchBox(input);
@@ -22,13 +36,14 @@ function initAutocomplete() {
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
+
   var markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
 
-    console.log(places);
+    console.log("here", places);
 
     if (places.length == 0) {
       return;
@@ -45,7 +60,8 @@ function initAutocomplete() {
         console.log("Returned place contains no geometry");
         return;
       }
-      var icon = {
+    if(place.rating>=rating) {
+        var icon = {
         url: place.icon,
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
@@ -65,6 +81,10 @@ function initAutocomplete() {
       } else {
         bounds.extend(place.geometry.location);
       }
+
+      console.log("aqui", place.name+place.rating);
+    }
+   
     });
     map.fitBounds(bounds);
   });
