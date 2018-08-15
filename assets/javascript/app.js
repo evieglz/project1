@@ -12,6 +12,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var database = firebase.database();
+
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
@@ -24,7 +26,7 @@ var map, infoWindow;
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 30.267153, lng: -97.7430608},
+    center: { lat: 30.267153, lng: -97.7430608 },
     zoom: 15,
     mapTypeId: 'roadmap',
     styles: [
@@ -128,7 +130,7 @@ function initAutocomplete() {
   var searchBox = new google.maps.places.SearchBox(input);
   //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
   // Bias the SearchBox results towards current map's viewport.
-  map.addListener('bounds_changed', function() {
+  map.addListener('bounds_changed', function () {
     searchBox.setBounds(map.getBounds());
   });
 
@@ -166,17 +168,48 @@ function initAutocomplete() {
 
       // original code
 
+    // forloop through places.length
+
+    for (var i = 0; i < places.length; i++) {
+
+
+      var objectIWantToSendUp = {
+        "formatted_addresses": places[i].formatted_address,
+        "rating": places[i].rating,
+        "name": places[i].name
+      }
+
+      database.ref().push(objectIWantToSendUp);
+    }
+      // *****New Stuff*****
+
+      database.ref().on("child_added", function (snapshot) {
+        var name = snapshot.val().name;
+        var rating = snapshot.val().rating;
+        var addresses = snapshot.val().formatted_addresses;
+
+        $("#infoTable > tBody").append("<tr><td>" + name + "</td><td>" + addresses +  "</td><td>" + rating + "</td></tr>");
+
+      })
+
+
+
+
+      // *****New Stuff*****
+
+   
+
     if (places.length == 0) {
       return;
     }
     // Clear out the old markers.
-    markers.forEach(function(marker) {
+    markers.forEach(function (marker) {
       marker.setMap(null);
     });
     markers = [];
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
-    places.forEach(function(place) {
+    places.forEach(function (place) {
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
