@@ -44,7 +44,9 @@ function initAutocomplete() {
    
     var places = searchBox.getPlaces();
 
+    console.log("places");
     console.log(places);
+    console.log("places");
 
     // forloop through places.length
 
@@ -52,8 +54,10 @@ function initAutocomplete() {
 
 
       var objectIWantToSendUp = {
-        "formatted_addresses": places[i].formatted_address,
-        "name": places[i].name
+        "formatted_address": places[i].formatted_address,
+        "name": places[i].name,
+        "likes": 0,
+        "rating": places[i].rating
       }
 
 
@@ -62,11 +66,50 @@ function initAutocomplete() {
     }
       // *****New Stuff*****
 
+      
+
       database.ref().on("child_added", function (snapshot) {
         var name = snapshot.val().name;
         var addresses = snapshot.val().formatted_address;
+        var likes = 0;
+        var rating = snapshot.val().rating;
 
-        $("#infoTable > tBody").append("<tr><td>" + name + "</td><td>" + addresses + "</td></tr>");
+        $(".clicks").on("click", function(){
+          likes++
+  
+          console.log("likes");
+          console.log(likes);
+          console.log("likes");
+  
+          database.ref().set({
+            clickCount: likes
+          });
+        });
+
+            database.ref().on("value", function (snapshot) {
+
+
+            console.log(snapshot.val());
+
+
+            $(".clicks").text(snapshot.val().clickCount);
+
+
+            likesCounter = snapshot.val().clickCount;
+
+            });
+
+
+
+
+
+
+        // likes = snapshot.val().likes;
+
+
+        $("#infoTable > tBody").append("<tr><td class='myLikes' value='"+name+"'><button class='clicks'> " + likes + " </button></td><td> " + name + "</td><td> " + rating + " </td><td> " + addresses + "</td></tr>");
+
+        
 
       })
 
@@ -116,5 +159,45 @@ function initAutocomplete() {
     map.fitBounds(bounds);
   });
 }
+// //When user clicks on likes 
+// grab value of the name, find the value of the name in the databass and update that like by like++
+
+// update likes++, update firebase, get snapshot
+
+      // *****New Stuff*****
+      
+     
+
+      
+        // $(".clicks").text(snapshot.val().clickCount);
+
+
+
+      //*****New Stuff*****
+
+      // var likes = 0;
+
+
+        // $("#click-button").on("click", function () {
+
+        //     likes++;
+
+        //     database.ref().set({
+        //         clickCount: likesCounter
+        //     });
+        // });
+
+
+      //   database.ref().on("value", function (snapshot) {
+
+
+      //       console.log(snapshot.val());
+
+
+      //       $("#click-value").text(snapshot.val().clickCount);
+
+
+      //       likesCounter = snapshot.val().clickCount;
+
 
 
