@@ -29,8 +29,8 @@ img {
     width: 890px;
     transform: rotate(90deg); 
     float: right;
-    margin-right: -420px;
-    margin-top: -470px;
+    margin-right: 515px;
+    margin-top: -600px;
     
 }
 
@@ -83,10 +83,6 @@ ul.dropdown-menu>li {
 }
 
 
-
-
-
-
  .iframe-container{
     position: relative;
     width: 65%;
@@ -108,7 +104,9 @@ ul.dropdown-menu>li {
     width: 100%;
 } 
 
-
+.panel.panel-primary {
+    float:right;
+}
 
 
 /* GOOGLE MAP SEARCH CSS 

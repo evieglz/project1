@@ -38,42 +38,90 @@
 
 <body>
 
-
-<div id="container">
-  
-     <img id = "austin" src="assets/images/skyline.jpg" alt="sign" style= "height:800px" "width:1000px;"> 
-      <div class = "search-page">
-      <p id= "caption"> DESTINATION </p>
-      <!-- Search form -->
-      <input id= "search-input" class="form-control" type="text" placeholder="Search" aria-label="Search">
-      <br>
-      <!-- Search form -->
-      <p id= "caption"> DISTANCE </p> 
-      <input class="form-control" type="text" placeholder="meters" aria-label="Search">
-      <!-- Search form -->
-      <br>
-      <p id= "caption"> PRICE </p>
-      <input class="form-control" type="text" placeholder="$$" aria-label="Search">
-
-      <br>
-      <button type="submit" class="btn btn-info">submit</button>
+<div class="row">
+  <div class="col-md-auto">
+    <div id="container">
+      
+        <img id = "austin" src="assets/images/skyline.jpg" alt="sign" style= "height:800px" "width:1000px;"> 
+          <div class = "search-page">
+          <p id= "caption"> DESTINATION </p>
+          <!-- Search form -->
+          <input id= "search-input" class="form-control" type="text" placeholder="Search" aria-label="Search">
+          <br>
+          <!-- Search form -->
+          <p id= "caption"> DISTANCE </p> 
+          <input class="form-control" type="text" placeholder="meters" aria-label="Search">
+          <!-- Search form -->
+          <br>
+          <p id= "caption"> Rating </p>
+          <input class="form-control" type="text" placeholder="☆☆☆☆☆" aria-label="Search">
+          
+          
+          <br>
+          <button type="submit" class="btn btn-info btn-submit">submit</button>
+        </div>
+      </div> 
     </div>
-  </div>  
   
+  <div class="col"></div>
+    <!-- MAP -->
+    <div class="iframe-container">
+    <div id="map"></div>
+    <!-- poi -->
+    <div id="infowindow-content">
+        <img id="place-icon" src="" height="16" width="16">
+        <span id="place-name"  class="title"></span><br>
+        Place ID <span id="place-id"></span><br>
+        <span id="place-address"></span>
+      </div>
+    </div>
+        <script src="assets/javascript/app.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO9-3zC1SgUpkcnrERVzsS3h4xEySru3k&libraries=places&callback=initAutocomplete"
+          async defer></script>
+  </div>
+        <!-- <script src="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT,LONG&radius=500&types=parking&sensor=false&key=AIzaSyDO9-3zC1SgUpkcnrERVzsS3h4xEySru3k&callback=point_of_interest"
+        async defer></script> -->
+    <!-- *****NEW STUFF***** -->
 
-
-  
-<!-- MAP -->
-
-<div class="iframe-container">
-<div id="map"></div>
+  <div class="col col-lg-2">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Name and Addresses</strong></h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover" id="infoTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+                <!-- Leave this empty -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-    <script src="assets/javascript/app.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO9-3zC1SgUpkcnrERVzsS3h4xEySru3k&libraries=places&callback=initAutocomplete"
-       async defer></script>
 
-       <!-- <script src="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=LAT,LONG&radius=500&types=parking&sensor=false&key=AIzaSyDO9-3zC1SgUpkcnrERVzsS3h4xEySru3k&callback=point_of_interest"
-       async defer></script> -->
+    <div class="row">
+        <div class="col">
+          1 of 3
+        </div>
+        <div class="col-md-auto">
+          Variable width content
+        </div>
+        <div class="col col-lg-2">
+          3 of 3
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  
+     <!-- *****NEW STUFF***** -->
 <center><p id="parkIt"> - - - - - - - - - - - - PARK IT - - - - - - - - - - - - </p></center>
 
 
